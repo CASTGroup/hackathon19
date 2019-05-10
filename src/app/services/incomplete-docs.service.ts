@@ -38,26 +38,26 @@ export class IncompleteDocsService {
   getDocumentsByConfigId(id: string): Observable<[]> {
     let documentsReturned = new Subject<[]>();
 
-    let pino = this.getConfigById(id);
-    let gino = this.searchConfSrv.generateQueryBody('',1000, 0);
-    gino.query.query = pino.query;
-    gino.include = ['properties'];
+    let docConfig = this.getConfigById(id);
+    let queryBody = this.searchConfSrv.generateQueryBody('',1000, 0);
+    queryBody.query.query = docConfig.query;
+    queryBody.include = ['properties'];
    
-    this.searchService.searchByQueryBody(gino)
+    this.searchService.searchByQueryBody(queryBody)
     .subscribe(
       (res: ResultSetPaging) => {
         let documentsPojo: any = [];
 
         res.list.entries.forEach(el => {
-          let nino = {
+          let tmpEntry = {
             filename: el.entry.name,
             id: el.entry.id,
           }
-          pino.formFields.forEach(form => {
-            nino[form.key] = el.entry.properties[form.key];
+          docConfig.formFields.forEach(form => {
+            tmpEntry[form.key] = el.entry.properties[form.key];
           });
 
-          documentsPojo.push(nino);
+          documentsPojo.push(tmpEntry);
         });
         documentsReturned.next(documentsPojo);
         documentsReturned.complete();

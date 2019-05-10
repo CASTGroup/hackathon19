@@ -1,8 +1,3 @@
-<!--
-  TODO
-  better layout
-  add Save button
--->
 <div class="viewerContainer" [style.height]="height">
   <adf-viewer *ngIf="nodeId" [showViewer]="true" [overlayMode]="false" [nodeId]="nodeId" [allowRightSidebar]="true"
     [allowLeftSidebar]="false" [showRightSidebar]="true">
@@ -10,7 +5,7 @@
       <ng-container *ngIf="properties">
         <adf-card-view [properties]="properties" [editable]="true">
         </adf-card-view>
-        <button mat-button color="primary" (click)="updateNodeProps()">Update</button>
+        <button mat-button color="primary" (click)="updateNodeProps()" class.adf-button-disabled="hasErrors()">Update</button>
       </ng-container>
     </adf-viewer-sidebar>
   </adf-viewer>
