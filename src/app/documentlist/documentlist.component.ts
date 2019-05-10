@@ -1,14 +1,15 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent } from '@alfresco/adf-content-services';
 import { PreviewService } from '../services/preview.service';
+import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
 
 @Component({
   selector: 'app-documentlist',
   templateUrl: './documentlist.component.html',
   styleUrls: ['./documentlist.component.css']
 })
-export class DocumentlistComponent {
+export class DocumentlistComponent implements OnInit {
 
   @Input()
   showViewer = false;
@@ -17,8 +18,12 @@ export class DocumentlistComponent {
   @ViewChild('documentList')
   documentList: DocumentListComponent;
 
-  constructor(private notificationService: NotificationService, private preview: PreviewService) {
+  constructor(private notificationService: NotificationService, 
+              private preview: PreviewService,
+              private incompleteDoc: IncompleteDocsService ) {}
 
+  ngOnInit() {
+    this.incompleteDoc.loadConfig();
   }
 
   uploadSuccess(event: any) {

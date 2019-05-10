@@ -1,13 +1,15 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ObjectDataTableAdapter, NodesApiService } from '@alfresco/adf-core';
 import { MinimalNode } from '@alfresco/js-api';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentsConfig, configArray } from 'app/app.component';
+import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
 
 @Component({
   selector: 'app-my-first-view',
   templateUrl: './my-first-view.component.html',
-  styleUrls: ['./my-first-view.component.scss']
+  styleUrls: ['./my-first-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyFirstViewComponent implements OnInit, OnDestroy {
 
@@ -39,6 +41,8 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
     ]
   );
 
+  schema = [];
+
   private params: any;
   idConfig : string;
 
@@ -47,19 +51,32 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
   @Input()
   showViewer: boolean = false;
   
-  constructor(private nodeService: NodesApiService, private route: ActivatedRoute) {
+  constructor(private nodeService: NodesApiService, 
+              private route: ActivatedRoute,
+              private incompleteServ: IncompleteDocsService,
+              private cdr: ChangeDetectorRef
+              ) {
   }
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
       this.idConfig = params['idconfig'];
+      this.config = this.incompleteServ.getConfigById(this.idConfig);
+      this.schema.length = 0;
+      
+      this.config.formFields.forEach(el => {
+        this.schema.push({
+          type: 'text',
+          key: el.key,
+          title: el.label,
+          sortable: 'true'
+        } )
+      })
+      console.log(this.schema);
+      this.cdr.detectChanges();
     });
 
-    // TODO
-    // create here the subscription (if needed) to a "Document Config service"
-    // and get the correct config
-    this.config = configArray[0];
-
+    
     // TODO
     // here we need to do the query, parse the results and prepare a ObjectDataTableAdapter ad-hoc
     // the term needs to be the config.query + all the requeried field in OR for the NULL check

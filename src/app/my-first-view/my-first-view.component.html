@@ -1,41 +1,13 @@
-<p>
-  my-first-view works!
-</p>
-
 <!--
   TODO
   data-columns should be dynamic
   selectionMode is nice if we can manage multiple selection
   add "upload button"
 -->
-<adf-datatable 
+<adf-datatable *ngIf="schema"
   (rowClick)="onRowClick($event)"
   selectionMode="single"
-  [data]="data">
-  <data-columns>
-    <data-column 
-      key="fileName" 
-      type="text" 
-      title="File Name"
-    >
-    </data-column>
-    <data-column 
-      key="demo:code" 
-      type="text" 
-      title="Code"
-    >
-    </data-column>
-    <data-column 
-      key="demo:description" 
-      type="text" 
-      title="Description"
-    >
-    </data-column>
-    <data-column 
-      key="demo:value" 
-      type="text" 
-      title="Value"
-    >
-    </data-column>
-  </data-columns>
+  [data]="data"
+  [columns]="schema"
+  >
 </adf-datatable>

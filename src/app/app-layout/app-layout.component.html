@@ -25,11 +25,13 @@
                 <a mat-list-item class="adf-sidenav-link" routerLink="/documentlist">
                     <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Documents</div>
-                </a>
-                <a mat-list-item class="adf-sidenav-link" routerLink="/my-first-view/ConfigOne">
+                </a> 
+              
+                <a *ngFor="let el of configArray" mat-list-item class="adf-sidenav-link" routerLink="/my-first-view/{{el.id}}">
                     <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
-                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Doc Query List</div>
+                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">{{ el.label }}</div>
                 </a>
+
                 <a mat-list-item class="adf-sidenav-link" routerLink="/my-second-view/ConfigOne/e7b7bb0f-8f2b-4ddb-9e96-12841a1f99c0">
                     <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Doc Query Detail</div>
