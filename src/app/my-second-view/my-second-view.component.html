@@ -4,18 +4,13 @@
   add Save button
 -->
 <div class="viewerContainer" [style.height]="height">
-  <adf-viewer *ngIf="nodeId" 
-      [showViewer]="true" 
-      [overlayMode]="false" 
-      [nodeId]="nodeId" 
-      [allowRightSidebar]="true" 
-      [allowLeftSidebar]="false"
-      [showRightSidebar]="true">
+  <adf-viewer *ngIf="nodeId" [showViewer]="true" [overlayMode]="false" [nodeId]="nodeId" [allowRightSidebar]="true"
+    [allowLeftSidebar]="false" [showRightSidebar]="true">
     <adf-viewer-sidebar>
       <adf-card-view *ngIf="properties" [properties]="properties" [editable]="true">
       </adf-card-view>
 
-      <button (click)="updateNodeProps()">Update</button>
+      <button mat-button color="primary" (click)="updateNodeProps()">Update</button>
     </adf-viewer-sidebar>
   </adf-viewer>
 </div>

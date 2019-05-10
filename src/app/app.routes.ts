@@ -31,14 +31,17 @@ export const appRoutes: Routes = [
   {
     path: '',
     component: AppLayoutComponent,
+    canActivate: [AuthGuardEcm],
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuardEcm],
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuardEcm],
       },
       {
         path: 'documentlist',

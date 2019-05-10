@@ -13,7 +13,7 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
 
   private params: any;
   private cardViewUpdateServiceSub: any;
-  idConfig : string;
+  idConfig: string;
   nodeId: string; // sample
   height = '600px';
   node: MinimalNode;
@@ -27,46 +27,46 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
     this.height = document.querySelector('mat-sidenav-content').getBoundingClientRect().height + 'px';
   }
 
-  constructor(private nodeService: NodesApiService, 
-    private route: ActivatedRoute, 
+  constructor(private nodeService: NodesApiService,
+    private route: ActivatedRoute,
     private incompleteServ: IncompleteDocsService,
     private cardViewUpdateService: CardViewUpdateService
-    ) {
+  ) {
     this.params = this.route.params.subscribe(params => {
       this.idConfig = params['idconfig'];
       this.nodeId = params['nodeId'];
 
 
       this.nodeService.getNode(this.nodeId).subscribe((entry: MinimalNode) => {
-        this.node= entry;
+        this.node = entry;
 
-        let docConfig = this.incompleteServ.getConfigById(this.idConfig);
+        const docConfig = this.incompleteServ.getConfigById(this.idConfig);
         this.properties = [];
-  
+
         this.properties.push(
           new CardViewTextItemModel({
-          label: 'File Name',
-          value: this.node.name,
-          key: 'fileName',
-          editable: false,
-          clickCallBack : ()=>{ }
+            label: 'File Name',
+            value: this.node.name,
+            key: 'fileName',
+            editable: false,
+            clickCallBack: () => { }
           })
         );
-  
+
         docConfig.formFields.forEach(el => {
           this.properties.push(
             new CardViewTextItemModel({
-            label: el.label,
-            value: this.node.properties[el.key],
-            key: el.key,
-            editable: true,
-            clickCallBack : ()=>{ }
+              label: el.label,
+              value: this.node.properties[el.key],
+              key: el.key,
+              editable: true,
+              clickCallBack: () => { }
             })
           );
         });
-        
+
         console.log(this.properties);
-        
+
 
       });
     });
@@ -84,7 +84,7 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
   }
 
   respondToCardUpdate(un: UpdateNotification) {
-    console.log(un)
+    console.log(un);
     this.node.properties[un.target.key] = un.changed[un.target.key];
   }
 

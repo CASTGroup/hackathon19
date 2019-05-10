@@ -7,22 +7,23 @@ import { DocumentsConfig } from 'app/app.component';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.css']
 })
-export class AppLayoutComponent implements OnInit{
+export class AppLayoutComponent implements OnInit {
   configArray: DocumentsConfig[] = [];
 
   constructor(private incompleteServ: IncompleteDocsService) {
   }
 
   ngOnInit() {
+    this.incompleteServ.loadConfig();
     this.incompleteServ.configChanged$.subscribe(
       res => {
         this.configArray = res;
       }
     );
-    
+
   }
 
   isMenuMinimized() {
-    return false
+    return false;
   }
 }

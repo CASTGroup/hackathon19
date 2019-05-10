@@ -18,12 +18,12 @@ export class DocumentlistComponent implements OnInit {
   @ViewChild('documentList')
   documentList: DocumentListComponent;
 
-  constructor(private notificationService: NotificationService, 
+  constructor(private notificationService: NotificationService,
               private preview: PreviewService,
               private incompleteDoc: IncompleteDocsService ) {}
 
   ngOnInit() {
-    this.incompleteDoc.loadConfig();
+    // this.incompleteDoc.loadConfig();
   }
 
   uploadSuccess(event: any) {

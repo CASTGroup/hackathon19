@@ -1,4 +1,5 @@
-<adf-sidenav-layout [sidenavMin]="70" [sidenavMax]="200" [stepOver]="780" [hideSidenav]="false" [expandedSidenav]="true">
+<adf-sidenav-layout [sidenavMin]="70" [sidenavMax]="200" [stepOver]="780" [hideSidenav]="false"
+    [expandedSidenav]="true">
 
     <adf-sidenav-layout-header>
         <ng-template let-toggleMenu="toggleMenu">
@@ -18,24 +19,18 @@
     <adf-sidenav-layout-navigation>
         <ng-template let-isMenuMinimized="isMenuMinimized">
             <mat-nav-list class="adf-sidenav-linklist">
-                <a mat-list-item class="adf-sidenav-link" routerLink="/login">
-                    <mat-icon matListIcon class="sidenav-menu-icon">vpn_key</mat-icon>
-                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Login</div>
-                </a>
+                <!--                 
                 <a mat-list-item class="adf-sidenav-link" routerLink="/documentlist">
                     <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Documents</div>
-                </a> 
-              
-                <a *ngFor="let el of configArray" mat-list-item class="adf-sidenav-link" routerLink="/my-first-view/{{el.id}}">
+                </a>  -->
+
+                <a *ngFor="let el of configArray" mat-list-item class="adf-sidenav-link"
+                    routerLink="/my-first-view/{{el.id}}">
                     <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">{{ el.label }}</div>
                 </a>
 
-                <a mat-list-item class="adf-sidenav-link" routerLink="/my-second-view/ConfigOne/4bb5d6d9-8c14-48b7-a013-02896768db5f">
-                    <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
-                    <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Doc Query Detail</div>
-                </a>
                 <a mat-list-item adf-logout class="adf-sidenav-link">
                     <mat-icon matListIcon class="sidenav-menu-icon">exit_to_app</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Logout</div>
