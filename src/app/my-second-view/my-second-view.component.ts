@@ -12,7 +12,7 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
 
   private params: any;
   idConfig : string;
-  nodeId: string = 'e7b7bb0f-8f2b-4ddb-9e96-12841a1f99c0'; // sample
+  nodeId: string; // sample
   
   node: MinimalNode;
 

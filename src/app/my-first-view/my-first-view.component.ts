@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DocumentsConfig, configArray } from 'app/app.component';
 
 import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
+import { PreviewService } from 'app/services/preview.service';
 
 @Component({
   selector: 'app-my-first-view',
@@ -54,7 +55,8 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
   
   constructor(private nodeService: NodesApiService, 
               private route: ActivatedRoute,
-              private incompleteServ: IncompleteDocsService
+              private incompleteServ: IncompleteDocsService,
+              private preview: PreviewService
               ) {
   }
 
@@ -106,6 +108,8 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
     // TODO
     // here we react to the node selected, than we are able to display the properties of the node
     //alert('We just clicked row id: ' + event.value.obj.id);
+    console.log(event);
+    this.preview.showResource(event.value.obj.id);
   }
 
 

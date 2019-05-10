@@ -1,12 +1,15 @@
-<p>
-  my-second-view works!
-</p>
 
 <!--
   TODO
   better layout
   add Save button
 -->
+<adf-viewer *ngIf="nodeId"
+    [showViewer]="true" 
+    [overlayMode]="false" 
+    [nodeId]="nodeId">
+</adf-viewer>
+
 <adf-card-view
   [properties]="properties"
   [editable]="true">

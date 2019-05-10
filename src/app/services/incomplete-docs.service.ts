@@ -51,6 +51,7 @@ export class IncompleteDocsService {
         res.list.entries.forEach(el => {
           let nino = {
             filename: el.entry.name,
+            id: el.entry.id,
           }
           pino.formFields.forEach(form => {
             nino[form.key] = el.entry.properties[form.key];
