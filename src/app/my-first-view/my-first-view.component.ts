@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ObjectDataTableAdapter, NodesApiService } from '@alfresco/adf-core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentsConfig, configArray } from 'app/app.component';
 
 import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
@@ -55,6 +55,7 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
 
   constructor(private nodeService: NodesApiService,
     private route: ActivatedRoute,
+    private router: Router,
     private incompleteServ: IncompleteDocsService,
     private preview: PreviewService
   ) {
@@ -109,7 +110,8 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
     // here we react to the node selected, than we are able to display the properties of the node
     // alert('We just clicked row id: ' + event.value.obj.id);
     console.log(event);
-    this.preview.showResource(event.value.obj.id);
+    this.router.navigate(['/my-second-view', this.idConfig, event.value.obj.id]);
+    //this.preview.showResource(event.value.obj.id);
   }
 
 

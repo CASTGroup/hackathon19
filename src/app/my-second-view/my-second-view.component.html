@@ -12,7 +12,7 @@
       [allowLeftSidebar]="false"
       [showRightSidebar]="true">
     <adf-viewer-sidebar>
-      <adf-card-view [properties]="properties" [editable]="true">
+      <adf-card-view *ngIf="properties" [properties]="properties" [editable]="true">
       </adf-card-view>
     </adf-viewer-sidebar>
   </adf-viewer>
