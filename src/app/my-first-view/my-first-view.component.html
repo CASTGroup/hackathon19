@@ -4,10 +4,10 @@
   selectionMode is nice if we can manage multiple selection
   add "upload button"
 -->
-<adf-datatable *ngIf="schema"
+
+<adf-datatable *ngIf="data"
   (rowClick)="onRowClick($event)"
   selectionMode="single"
   [data]="data"
-  [columns]="schema"
   >
 </adf-datatable>

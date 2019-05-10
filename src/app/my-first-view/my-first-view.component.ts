@@ -1,21 +1,22 @@
-import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ObjectDataTableAdapter, NodesApiService } from '@alfresco/adf-core';
-import { MinimalNode } from '@alfresco/js-api';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentsConfig, configArray } from 'app/app.component';
+
 import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
 
 @Component({
   selector: 'app-my-first-view',
   templateUrl: './my-first-view.component.html',
   styleUrls: ['./my-first-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyFirstViewComponent implements OnInit, OnDestroy {
 
   // TODO
   // this is a sample data, object must be returned from a query result
-  data = new ObjectDataTableAdapter(
+  data = null
+  /** 
+  new ObjectDataTableAdapter(
     [
       {
         id: 1, 
@@ -40,7 +41,7 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
       },
     ]
   );
-
+*/
   schema = [];
 
   private params: any;
@@ -53,8 +54,7 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
   
   constructor(private nodeService: NodesApiService, 
               private route: ActivatedRoute,
-              private incompleteServ: IncompleteDocsService,
-              private cdr: ChangeDetectorRef
+              private incompleteServ: IncompleteDocsService
               ) {
   }
 
@@ -62,7 +62,13 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
     this.params = this.route.params.subscribe(params => {
       this.idConfig = params['idconfig'];
       this.config = this.incompleteServ.getConfigById(this.idConfig);
-      this.schema.length = 0;
+      this.schema = [];
+      this.schema.push({
+        type: 'text',
+        key: 'filename',
+        title: 'File',
+        sortable: 'true'
+      });
       
       this.config.formFields.forEach(el => {
         this.schema.push({
@@ -73,10 +79,14 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
         } )
       })
       console.log(this.schema);
-      this.cdr.detectChanges();
+      this.incompleteServ.getDocumentsByConfigId(this.idConfig).subscribe(
+        (documentsFound) => {
+          console.log(documentsFound);
+          this.data = new ObjectDataTableAdapter(documentsFound, this.schema);
+        }
+      );
     });
 
-    
     // TODO
     // here we need to do the query, parse the results and prepare a ObjectDataTableAdapter ad-hoc
     // the term needs to be the config.query + all the requeried field in OR for the NULL check
