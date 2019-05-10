@@ -7,10 +7,11 @@
   <adf-viewer *ngIf="nodeId" [showViewer]="true" [overlayMode]="false" [nodeId]="nodeId" [allowRightSidebar]="true"
     [allowLeftSidebar]="false" [showRightSidebar]="true">
     <adf-viewer-sidebar>
-      <adf-card-view *ngIf="properties" [properties]="properties" [editable]="true">
-      </adf-card-view>
-
-      <button mat-button color="primary" (click)="updateNodeProps()">Update</button>
+      <ng-container *ngIf="properties">
+        <adf-card-view [properties]="properties" [editable]="true">
+        </adf-card-view>
+        <button mat-button color="primary" (click)="updateNodeProps()">Update</button>
+      </ng-container>
     </adf-viewer-sidebar>
   </adf-viewer>
 </div>
