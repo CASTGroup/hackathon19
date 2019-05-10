@@ -111,7 +111,7 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
     // alert('We just clicked row id: ' + event.value.obj.id);
     console.log(event);
     this.router.navigate(['/my-second-view', this.idConfig, event.value.obj.id]);
-    //this.preview.showResource(event.value.obj.id);
+    // this.preview.showResource(event.value.obj.id);
   }
 
 

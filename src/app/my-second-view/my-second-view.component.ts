@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { NodesApiService, CardViewTextItemModel, CardViewUpdateService, UpdateNotification } from '@alfresco/adf-core';
 import { ActivatedRoute } from '@angular/router';
 import { MinimalNode } from '@alfresco/js-api';
@@ -15,13 +15,17 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
   private cardViewUpdateServiceSub: any;
   idConfig : string;
   nodeId: string; // sample
-  
+  height = '600px';
   node: MinimalNode;
 
   // TODO
   // this need to be Dynamic
   properties = null;
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.height = document.querySelector('mat-sidenav-content').getBoundingClientRect().height + 'px';
+  }
 
   constructor(private nodeService: NodesApiService, 
     private route: ActivatedRoute, 
@@ -71,6 +75,7 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.cardViewUpdateServiceSub = this.cardViewUpdateService.itemUpdated$.subscribe(this.respondToCardUpdate.bind(this));
+    this.onResize();
   }
 
   ngOnDestroy() {
@@ -80,7 +85,12 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
 
   respondToCardUpdate(un: UpdateNotification) {
     console.log(un)
-    //this.updateMessage = un.target.label + ' changed to ' + un.changed[un.target.key];
+    this.node.properties[un.target.key] = un.changed[un.target.key];
   }
 
+  updateNodeProps() {
+    this.nodeService.updateNode(this.nodeId, {
+      properties: this.node.properties
+    });
+  }
 }
