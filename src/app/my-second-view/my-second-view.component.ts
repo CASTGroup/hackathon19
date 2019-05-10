@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NodesApiService, CardViewTextItemModel } from '@alfresco/adf-core';
+import { NodesApiService, CardViewTextItemModel, CardViewUpdateService, UpdateNotification } from '@alfresco/adf-core';
 import { ActivatedRoute } from '@angular/router';
 import { MinimalNode } from '@alfresco/js-api';
 import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
@@ -12,6 +12,7 @@ import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
 export class MySecondViewComponent implements OnInit, OnDestroy {
 
   private params: any;
+  private cardViewUpdateServiceSub: any;
   idConfig : string;
   nodeId: string; // sample
   
@@ -22,55 +23,64 @@ export class MySecondViewComponent implements OnInit, OnDestroy {
   properties = null;
 
 
-  constructor(private nodeService: NodesApiService, private route: ActivatedRoute, private incompleteServ: IncompleteDocsService) {
+  constructor(private nodeService: NodesApiService, 
+    private route: ActivatedRoute, 
+    private incompleteServ: IncompleteDocsService,
+    private cardViewUpdateService: CardViewUpdateService
+    ) {
     this.params = this.route.params.subscribe(params => {
       this.idConfig = params['idconfig'];
       this.nodeId = params['nodeId'];
 
-      // TODO
-      // call the node load and config load, 
-      // do the parsing of the node propresties to populate the "" desired
-      let docConfig = this.incompleteServ.getConfigById(this.idConfig);
-      this.properties = [];
 
-      this.properties.push(
-        new CardViewTextItemModel({
-        label: 'File Name',
-        value: 'TODO',
-        key: 'fileName',
-        editable: false,
-        clickCallBack : ()=>{ }
-        })
-      );
+      this.nodeService.getNode(this.nodeId).subscribe((entry: MinimalNode) => {
+        this.node= entry;
 
-      docConfig.formFields.forEach(el => {
+        let docConfig = this.incompleteServ.getConfigById(this.idConfig);
+        this.properties = [];
+  
         this.properties.push(
           new CardViewTextItemModel({
-          label: el.label,
-          value: 'TODO',
-          key: el.key,
-          editable: true,
+          label: 'File Name',
+          value: this.node.name,
+          key: 'fileName',
+          editable: false,
           clickCallBack : ()=>{ }
           })
         );
+  
+        docConfig.formFields.forEach(el => {
+          this.properties.push(
+            new CardViewTextItemModel({
+            label: el.label,
+            value: this.node.properties[el.key],
+            key: el.key,
+            editable: true,
+            clickCallBack : ()=>{ }
+            })
+          );
+        });
+        
+        console.log(this.properties);
+        
+
       });
-      
-      console.log(this.properties);
-      
-      /** 
-      this.nodeService.getNode(this.nodeId).subscribe((entry: MinimalNode) => {
-        this.node= entry;
-      });
-      */
     });
 
   }
 
   ngOnInit() {
+    this.cardViewUpdateServiceSub = this.cardViewUpdateService.itemUpdated$.subscribe(this.respondToCardUpdate.bind(this));
   }
 
   ngOnDestroy() {
     this.params.unsubscribe();
+    this.cardViewUpdateServiceSub.unsubscribe();
+  }
+
+  respondToCardUpdate(un: UpdateNotification) {
+    console.log(un)
+    //this.updateMessage = un.target.label + ' changed to ' + un.changed[un.target.key];
   }
 
 }
