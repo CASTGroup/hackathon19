@@ -3,7 +3,7 @@
   better layout
   add Save button
 -->
-<div class="viewerContainer">
+<div class="viewerContainer" [style.height]="height">
   <adf-viewer *ngIf="nodeId" 
       [showViewer]="true" 
       [overlayMode]="false" 
