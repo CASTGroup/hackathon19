@@ -1,16 +1,19 @@
-
 <!--
   TODO
   better layout
   add Save button
 -->
-<adf-viewer *ngIf="nodeId"
-    [showViewer]="true" 
-    [overlayMode]="false" 
-    [nodeId]="nodeId">
-</adf-viewer>
-
-<adf-card-view
-  [properties]="properties"
-  [editable]="true">
-</adf-card-view>
+<div class="viewerContainer">
+  <adf-viewer *ngIf="nodeId" 
+      [showViewer]="true" 
+      [overlayMode]="false" 
+      [nodeId]="nodeId" 
+      [allowRightSidebar]="true" 
+      [allowLeftSidebar]="false"
+      [showRightSidebar]="true">
+    <adf-viewer-sidebar>
+      <adf-card-view [properties]="properties" [editable]="true">
+      </adf-card-view>
+    </adf-viewer-sidebar>
+  </adf-viewer>
+</div>
