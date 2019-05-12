@@ -5,9 +5,30 @@ Minimal ready-to-use Angular CLI project template pre-configured with ADF 3.1.0 
 This project was generated with yo following [Creating your first ADF application](https://www.alfresco.com/abn/adf/docs/tutorials/creating-your-first-adf-application/).
 
 This project was created during the [Alfresco Spring Hackathon 2019](https://community.alfresco.com/docs/DOC-8142-global-virtual-hack-a-thon-spring-2019#jive_content_id_Facilitating_Content_Ingestion)
- 
 
-## Configuration
+## The project: Facilitating Content Ingestion
+We want to build a dynamic interface for facilitating metadata typing. 
+
+You can have many content sources for Alfresco and for some of them you just can't extract metadata but you need a human type it down.
+
+To minimize the user clicks have built some folder, in every folder there is:
+- a rule that Change the type of content added 
+- a configuration that permit to specify:
+  - when metadata must be completed (i.e. a query)
+  - what metadata the person need to complete (possibly a subset of all the content metadata)
+
+During the Hackathon we have built two components. The first one shows the rules defined on the left and a grid of metadata. Once you click on one row of the grid, the second component shows the content preview and the card to insert metadata.
+
+The project is not perfect, so don't use it in a production environment.
+
+This is a snapshot of the first component
+![First component](/img/one.png)
+
+This is a snapshot of the second component
+![Second component](/img/two.png)
+
+
+### Configuration
 
 Clone the project, cd into folder and update the Alfresco URL endpoint in the `proxy.conf.js`.
 
