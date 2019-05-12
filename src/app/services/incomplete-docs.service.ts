@@ -11,6 +11,7 @@ export class IncompleteDocsService {
   private configArray: DocumentsConfig[] = [];
   private configChanged = new Subject<DocumentsConfig[]>();
   configChanged$ = this.configChanged.asObservable();
+  loaded = false;
 
   constructor(private searchService: SearchService,
     private searchConfSrv: SearchConfigurationService) { }
@@ -28,6 +29,7 @@ export class IncompleteDocsService {
             this.configArray.push(JSON.parse(el.entry.properties['demo:config']))
           });
           this.configChanged.next(this.configArray);
+          this.loaded = true;
         });
   }
 

@@ -17,7 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DocumentlistComponent } from './documentlist/documentlist.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
-import { MyFirstComponentComponent } from './my-first-component/my-first-component.component';
 import { MyFirstViewComponent } from './my-first-view/my-first-view.component';
 import { MySecondViewComponent } from './my-second-view/my-second-view.component';
 
@@ -44,7 +43,6 @@ import { MySecondViewComponent } from './my-second-view/my-second-view.component
         DocumentlistComponent,
         AppLayoutComponent,
         FileViewComponent,
-        MyFirstComponentComponent,
         MyFirstViewComponent,
         MySecondViewComponent
     ],

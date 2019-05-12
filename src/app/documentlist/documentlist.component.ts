@@ -2,7 +2,6 @@ import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { NotificationService } from '@alfresco/adf-core';
 import { DocumentListComponent } from '@alfresco/adf-content-services';
 import { PreviewService } from '../services/preview.service';
-import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
 
 @Component({
   selector: 'app-documentlist',
@@ -19,12 +18,9 @@ export class DocumentlistComponent implements OnInit {
   documentList: DocumentListComponent;
 
   constructor(private notificationService: NotificationService,
-              private preview: PreviewService,
-              private incompleteDoc: IncompleteDocsService ) {}
+              private preview: PreviewService ) {}
 
-  ngOnInit() {
-    // this.incompleteDoc.loadConfig();
-  }
+  ngOnInit() { }
 
   uploadSuccess(event: any) {
     this.notificationService.openSnackMessage('File uploaded');
@@ -42,5 +38,4 @@ export class DocumentlistComponent implements OnInit {
     this.showViewer = false;
     this.nodeId = null;
   }
-
 }

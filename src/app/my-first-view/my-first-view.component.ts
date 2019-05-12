@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ObjectDataTableAdapter, NodesApiService } from '@alfresco/adf-core';
+import { ObjectDataTableAdapter, NotificationService } from '@alfresco/adf-core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DocumentsConfig, configArray } from 'app/app.component';
+import { DocumentsConfig } from 'app/app.component';
 
 import { IncompleteDocsService } from 'app/services/incomplete-docs.service';
-import { PreviewService } from 'app/services/preview.service';
 
 @Component({
   selector: 'app-my-first-view',
@@ -23,11 +22,10 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
   @Input()
   showViewer = false;
 
-  constructor(private nodeService: NodesApiService,
-    private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
     private incompleteServ: IncompleteDocsService,
-    private preview: PreviewService
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -74,4 +72,8 @@ export class MyFirstViewComponent implements OnInit, OnDestroy {
   onRowClick(event: any) {
     this.router.navigate(['/my-second-view', this.idConfig, event.value.obj.id]);
   }
+
+  uploadSuccess(event: any) {
+    this.notificationService.openSnackMessage('File uploaded');
+  }  
 }

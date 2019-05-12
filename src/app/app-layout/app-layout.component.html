@@ -8,10 +8,10 @@
                     <mat-icon>menu</mat-icon>
                 </button>
 
-                <span fxFlex="1 1 auto" fxShow fxHide.lt-sm="true">ADF</span>
+                <span fxFlex="1 1 auto" fxShow fxHide.lt-sm="true">Hackathon 19</span>
 
                 <div class="adf-app-layout-menu-spacer"></div>
-
+                <span style="padding: 10%"><adf-userinfo></adf-userinfo></span>
             </mat-toolbar>
         </ng-template>
     </adf-sidenav-layout-header>
@@ -27,14 +27,14 @@
 
                 <a *ngFor="let el of configArray" mat-list-item class="adf-sidenav-link"
                     routerLink="/my-first-view/{{el.id}}">
-                    <mat-icon matListIcon class="sidenav-menu-icon">folder_open</mat-icon>
+                    <mat-icon matListIcon class="sidenav-menu-icon">aspect_ratio</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">{{ el.label }}</div>
                 </a>
-
+<!--
                 <a mat-list-item adf-logout class="adf-sidenav-link">
                     <mat-icon matListIcon class="sidenav-menu-icon">exit_to_app</mat-icon>
                     <div class="sidenav-menu-label" *ngIf="!isMenuMinimized()">Logout</div>
-                </a>
+                </a>-->
             </mat-nav-list>
         </ng-template>
     </adf-sidenav-layout-navigation>

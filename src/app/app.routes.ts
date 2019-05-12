@@ -17,7 +17,6 @@
 
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardEcm } from '@alfresco/adf-core';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DocumentlistComponent } from './documentlist/documentlist.component';
@@ -25,38 +24,39 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { FileViewComponent } from './file-view/file-view.component';
 import { MyFirstViewComponent } from './my-first-view/my-first-view.component';
 import { MySecondViewComponent } from './my-second-view/my-second-view.component';
+import { MyAuthGuard } from './services/my-auth-guard';
 
 export const appRoutes: Routes = [
-  { path: 'files/:nodeId/view', component: FileViewComponent, canActivate: [AuthGuardEcm], outlet: 'overlay' },
+  { path: 'files/:nodeId/view', component: FileViewComponent, canActivate: [MyAuthGuard], outlet: 'overlay' },
   {
     path: '',
     component: AppLayoutComponent,
-    canActivate: [AuthGuardEcm],
+    canActivate: [MyAuthGuard],
     children: [
-      {
+     /* {
         path: '',
         component: HomeComponent,
-        canActivate: [AuthGuardEcm],
-      },
+        canActivate: [MyAuthGuard],
+      },*/
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [AuthGuardEcm],
+        canActivate: [MyAuthGuard],
       },
       {
         path: 'documentlist',
         component: DocumentlistComponent,
-        canActivate: [AuthGuardEcm]
+        canActivate: [MyAuthGuard]
       },
       {
         path: 'my-first-view/:idconfig',
         component: MyFirstViewComponent,
-        canActivate: [AuthGuardEcm]
+        canActivate: [MyAuthGuard]
       },
       {
         path: 'my-second-view/:idconfig/:nodeId',
         component: MySecondViewComponent,
-        canActivate: [AuthGuardEcm]
+        canActivate: [MyAuthGuard]
       }
 
     ]
