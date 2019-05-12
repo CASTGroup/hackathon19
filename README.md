@@ -3,7 +3,7 @@
 Minimal ready-to-use Angular CLI project template pre-configured with ADF 3.1.0 components.
 
 This project was generated with yo following [Creating your first ADF application](https://www.alfresco.com/abn/adf/docs/tutorials/creating-your-first-adf-application/)
-This project was created during the [https://community.alfresco.com/docs/DOC-8142-global-virtual-hack-a-thon-spring-2019](Alfresco Spring Hackathon 2019)
+This project was created during the [Alfresco Spring Hackathon 2019](https://community.alfresco.com/docs/DOC-8142-global-virtual-hack-a-thon-spring-2019#jive_content_id_Facilitating_Content_Ingestion)
  
 
 ## Configuration
