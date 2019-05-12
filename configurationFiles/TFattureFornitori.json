@@ -1,0 +1,31 @@
+{
+    "id": "Fatture fornitore",
+    "label": "Supplier Invoices",
+    "query": "TYPE:'demo:TFatturaFornitore' ",
+    "formFields": [
+        {
+            "key": "demo:codFornitore",
+            "type": "text",
+            "label": "Supplier Code",
+            "required": "true"
+        },
+        {
+            "key": "demo:dataFattura",
+            "type": "date",
+            "label": "Invoice Date",
+            "required": "true"
+        },
+        {
+            "key": "demo:numeroFattura",
+            "type": "int",
+            "label": "Invoice Number",
+            "required": "true"
+        },
+        {
+            "key": "demo:ragsocFornitore",
+            "type": "text",
+            "label": "Supplier Name",
+            "required": "false"
+        }
+    ]
+}

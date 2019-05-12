@@ -1,0 +1,43 @@
+{
+    "id": "Origine Merci",
+    "label": "Origin of goods",
+    "query": "TYPE:'demo:TOrigineMerci' and (ISNULL: 'demo:codiceMaterialeFornitore' OR ISUNSET: 'demo:codiceMaterialeFornitore')",
+    "formFields": [
+        {
+            "key": "demo:codiceMaterialeFornitore",
+            "type": "text",
+            "label": "Supplier Code for goods",
+            "required": "true"
+        },
+        {
+            "key": "demo:dataCertificato",
+            "type": "date",
+            "label": "Certificate date",
+            "required": "false"
+        },
+        {
+            "key": "demo:dataScadenzaCertificato",
+            "type": "date",
+            "label": "Certificate expiration date ",
+            "required": "true"
+        },
+        {
+            "key": "demo:descrizioneMateriale",
+            "type": "text",
+            "label": "Description of goods",
+            "required": "false"
+        },
+        {
+            "key": "demo:nomenclaturaDoganale",
+            "type": "text",
+            "label": "Customs nomenclature",
+            "required": "false"
+        },
+        {
+            "key": "demo:quantitaMateriale",
+            "type": "text",
+            "label": "Quantity",
+            "required": "false"
+        }
+    ]
+}
