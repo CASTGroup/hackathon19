@@ -3,6 +3,7 @@
 Minimal ready-to-use Angular CLI project template pre-configured with ADF 3.1.0 components.
 
 This project was generated with yo following [Creating your first ADF application](https://www.alfresco.com/abn/adf/docs/tutorials/creating-your-first-adf-application/)
+This project was created during the [https://community.alfresco.com/docs/DOC-8142-global-virtual-hack-a-thon-spring-2019](Alfresco Spring Hackathon 2019)
  
 
 ## Configuration
@@ -18,8 +19,8 @@ After you have imported the model (or build your own):
 - make a folder
 - attach the TFldRules Type to the folder
 - edit the properties of the folder:
--- the Name field is up to you
--- in the Configuration field copy the json file `TFattureFornitore`
+  - the Name field is up to you
+  - in the Configuration field copy the json file `TFattureFornitore`
 - add a rule to the folder that for every new file added will specify the type `Fattura Fornitore Demo`
 
 Make a second folder and in the configuration copy the other json file and in the rule specify the type `Origine Merce Demo`
@@ -30,6 +31,6 @@ Then you are ready to start:
 npm install
 npm start
 ```
-The app will be available at [http://localhost:4200]
+The app will be available at [http://localhost:4200](http://localhost:4200)
 
 
