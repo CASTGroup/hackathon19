@@ -16,9 +16,9 @@ export class MyAuthGuard extends AuthGuardBase {
     }
 
     checkLogin(activeRoute: ActivatedRouteSnapshot, redirectUrl: string): Observable<boolean> | Promise<boolean> | boolean {
-        if (!this.incompleteServ.loaded) {
-            this.incompleteServ.loadConfig();
-        }
+        // if (!this.incompleteServ.loaded) {
+        //     this.incompleteServ.loadConfig();
+        // }
 
         if (this.authenticationService.isEcmLoggedIn() || this.withCredentials) {
             return true;
