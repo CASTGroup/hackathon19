@@ -1,15 +1,3 @@
-<adf-toolbar>
-
-  <div class="adf-toolbar--spacer"></div>
-
-  <adf-upload-button
-    [rootFolderId]="'-root-'"
-    [adf-check-allowable-operation]="'create'"
-    (success)="uploadSuccess($event)">
-  </adf-upload-button>
-
-</adf-toolbar>
-
 <adf-datatable *ngIf="data"
   (rowClick)="onRowClick($event)"
   selectionMode="single"
