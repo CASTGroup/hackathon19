@@ -36,7 +36,7 @@
     "@mat-datetimepicker/core": "^2.0.1",
     "@mat-datetimepicker/moment": "^2.0.1",
     "@ngx-translate/core": "^11.0.0",
-    "chart.js": "2.5.0",
+    "chart.js": "2.9.4",
     "classlist.js": "1.1.20150312",
     "core-js": "^2.5.4",
     "custom-event-polyfill": "0.3.0",
